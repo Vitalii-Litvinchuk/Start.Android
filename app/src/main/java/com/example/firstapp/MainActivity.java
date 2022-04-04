@@ -85,7 +85,8 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void Culc(String element) {
-        if (text.getText().toString().equals("Error")) text.setText("");
+        String mainText = text.getText().toString();
+        if (mainText.equals("Error")) text.setText("");
         switch (element) {
             case "1":
             case "2":
@@ -102,7 +103,7 @@ public class MainActivity extends AppCompatActivity {
                 break;
             case ".":
                 checkResetCounter();
-                if (!text.getText().toString().contains("."))
+                if (!mainText.contains(".") && !mainText.isEmpty())
                     text.append(element);
                 break;
             case "Reset":
@@ -117,7 +118,7 @@ public class MainActivity extends AppCompatActivity {
                 break;
             case "=":
                 checkResetCounter();
-                String textSecondNumber = text.getText().toString();
+                String textSecondNumber = mainText;
                 if (!btnFirstNumber.getText().toString().isEmpty() && !textSecondNumber.isEmpty()) {
                     double secondNumber = Double.parseDouble(textSecondNumber);
                     switch (action) {
@@ -151,9 +152,9 @@ public class MainActivity extends AppCompatActivity {
                     changeAction(element);
                     break;
                 }
-                String txt = text.getText().toString();
-                if (txt.isEmpty()) break;
-                changeFirstNumber(txt);
+                String number = mainText;
+                if (number.isEmpty()) break;
+                changeFirstNumber(number);
                 changeAction(element);
                 text.setText("");
                 break;
